@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="css/style.css">
+	<title>點餐服務</title>
+</head>
+
+<body>
+	<div id="app">
+		<h1>輕食饗宴</h1>
+		<section class="content">
+			<div class="container">
+				<ul class="menu clearfix">
+					<li>
+						<a href="javascript:;" v-on:click="menuToggle(1, $event)" :class="{bg: activeBg === 1}">全部</a>
+					</li>
+					<li>
+						<a href="javascript:;" v-on:click="menuToggle(2, $event)" :class="{bg: activeBg === 2}">主食</a>
+					</li>
+					<li>
+						<a href="javascript:;" v-on:click="menuToggle(3, $event)" :class="{bg: activeBg === 3}">點心</a>
+					</li>
+					<li>
+						<a href="javascript:;" v-on:click="menuToggle(4, $event)" :class="{bg: activeBg === 4}">飲料</a>
+					</li>
+				</ul>
+				<ul class="food" v-if="true">
+					<li class="row" v-for="(food, index) in filterFood(foodCategory)">
+						<div class="food-picture col-8">
+							<img :src="food.picture" :alt="food.name">
+						</div>
+						<div class="food-info col-4">
+							<div class="food-name">
+								<span>餐點：{{food.name}}</span>
+							</div>
+							<div class="food-type">
+								<span>類型：{{food.type}}</span>
+							</div>
+							<div class="food-number">
+								<a href="javascript:;" v-on:click="decrease(food)">-</a>
+								<span>{{food.count || 0}}</span>
+								<a href="javascript:;" v-on:click="increase(food)">+</a>
+							</div>
+							<div class="food-price">
+								<span>價格：${{food.price}}元</span>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<transition name="fade-cart">
+			<div class="cart-info" v-show="cartInfo">
+				<h2>結帳</h2>
+				<div class="box">
+					<transition name="fade-note" mode="out-in">
+						<div class="note" v-if="cart.length === 0">
+							<p>無餐點</p>
+						</div>
+						<ul v-else>
+							<transition-group name="fade-note" mode="out-in" tag="div">
+								<li class="row" v-for="(food, index) in cart" :key="index">
+									<div class="food-infos">
+										<div class="food-picture col-2">
+											<img :src="food.picture" alt="food">
+										</div>
+										<div class="food-name col-2">
+											<span>{{food.name}}</span>
+										</div>
+										<div class="food-type col-2">
+											<span>{{food.type}}</span>
+										</div>
+										<div class="food-price col-2">
+											<span>${{food.price}}元</span>
+										</div>
+										<div class="food-count col-2">
+											<span>{{food.count}}份</span>
+										</div>
+										<div class="food-remove col-2">
+											<a href="javascript:;" v-on:click="removeCart(food)">移除</a>
+										</div>
+									</div>
+								</li>
+							</transition-group>
+						</ul>
+					</transition>
+					<p class="checkout">
+						<b>總計：</b>
+						<span>${{cartCheckout}}</span>
+					</p>
+					<p class="leave">
+						<span v-show="paymentValidation">無結帳項目</span>
+						<a href="javascript:;" v-on:click="payment">結帳</a>
+						<a href="javascript:;" v-on:click="leave">離開</a>
+					</p>
+				</div>
+			</div>
+		</transition>
+
+		<div class="cart" v-on:click="open">
+			<span class="cart-number">{{cartCount}}</span>
+		</div>
+	</div>
+
+
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+	<script src="javascript/data.js ">
+	</script>
+	<script src="javascript/main.js ">
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,225 @@
+* {
+	// border: 1px solid grey;
+}
+
+.col-4,
+.col-8 {
+	// float: left;
+}
+
+.container {
+	margin: 0 auto;
+	padding: 50px;
+	padding-right: 50px;
+	padding-left: 50px;
+	max-width: 900px;
+}
+
+.fade-cart-enter,
+.fade-cart-leave-to {
+	opacity: 0;
+	transform: translate(50%, -50%) !important;
+}
+
+.fade-cart-enter-active,
+.fade-cart-leave-active {
+	transition: all .8s ease;
+}
+
+.fade-note-enter,
+.fade-note-leave-to {
+	opacity: 0;
+}
+
+.fade-note-enter-active,
+.fade-note-leave-active {
+	transition: all .8s ease;
+}
+
+.bg {
+	background-color: yellow !important;
+	color: black !important;
+}
+
+body {
+	background-image: url(../img/bg2.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+h1 {
+	font-size: 3em;
+	text-align: center;
+	padding-top: 50px;
+	color: white;
+	text-shadow: 0px 1px 3px #800000;
+}
+
+.menu {
+	>li {
+		display: inline-block;
+		margin-bottom: 40px;
+		a {
+			display: inline-block;
+			padding: 10px 40px;
+			background-color: orange;
+			color: white;
+			transition: all .3s;
+			@include prefix(border-radius, 3px);
+			&:hover {
+				background-color: darken(orange, 5%);
+			}
+		}
+	}
+}
+
+.food {
+	overflow: hidden;
+	text-align: center;
+	font-size: 0;
+	.row {
+		color: black;
+		background-color: white;
+	}
+	.food-picture,
+	.food-info {
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 16px;
+	}
+	.food-info {
+		padding-left: 5px;
+		padding-right: 5px;
+	}
+	>li {
+		&:not(:first-child) {
+			margin-top: 50px;
+		}
+	}
+	.food-picture {
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	.food-number {
+		>* {
+			vertical-align: top;
+		}
+		>a {
+			display: inline-block;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			background-color: orange;
+			color: white;
+			line-height: 25px;
+		}
+	}
+	.food-info {
+		>* {
+			&:not(:first-child) {
+				margin-top: 20px;
+			}
+		}
+	}
+}
+
+.cart-info {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	padding: 50px;
+	max-width: 900px;
+	width: 100%;
+	background-color: white;
+	@include prefix(box-shadow, 0px 5px 30px -5px #777);
+	@include prefix(transform, translate(-50%, -50%));
+	.box {
+		max-height: 500px;
+		overflow: scroll;
+	}
+	h2 {
+		text-align: center;
+		font-size: 2em;
+		margin-bottom: 50px;
+	}
+	.note {
+		margin: 0 auto;
+		width: 50%;
+		text-align: center;
+		p {
+			font-weight: bold;
+			font-size: 1.8em;
+		}
+	}
+	.row {
+		&:not(:first-child) {
+			margin-top: 20px;
+		}
+	}
+	.food-infos {
+		font-size: 0;
+	}
+	.col-2 {
+		display: inline-block;
+		vertical-align: middle;
+		text-align: center;
+		font-size: 16px;
+	}
+	.food-picture {
+		>img {
+			width: 100%;
+		}
+	}
+	.food-remove {
+		>a {
+			display: inline-block;
+			padding: 5px 20px;
+			width: 100%;
+			background-color: rgb(232, 9, 9);
+			color: white;
+			@include prefix(border-radius, 2px);
+		}
+	}
+	.checkout {
+		text-align: right;
+		b {
+			color: red;
+		}
+	}
+	.leave {
+		text-align: right;
+		span {
+			color: red;
+		}
+		a {
+			color: orange;
+		}
+	}
+}
+
+.cart {
+	position: fixed;
+	right: 20px;
+	bottom: 10px;
+	width: 80px;
+	height: 80px;
+	cursor: pointer;
+	background-color: yellow;
+	background-image: url(../img/cart.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	@include prefix(border-radius, 50%);
+	@include prefix(box-shadow, 0px 3px 10px -4px #777);
+	.cart-number {
+		position: absolute;
+		top: 38%;
+		left: 52%;
+		color: red;
+		font-weight: bold;
+		font-size: 1.5em;
+		@include prefix(transform, translate(-50%, -50%));
+	}
+}
